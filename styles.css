@@ -147,6 +147,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+  .brand-logo {
+    max-width: 100%; /* El logo no se saldrá de su contenedor */
+    height: auto;    /* Mantiene la proporción */
+    display: block;  /* Quita espacios extra debajo de la imagen */
+    padding: 4px;
+  }
+
 /* ===================== SIDEBAR ===================== */
 .sidebar {
   width: var(--sidebar-width);
