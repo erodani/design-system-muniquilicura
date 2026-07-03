@@ -1675,6 +1675,186 @@ body {
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
+/* ===================== BRANDING LOGOTYPES ===================== */
+.logo-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.logo-section-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.logo-section-title {
+  font-family: var(--font-headings);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.logo-section-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.logo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.logo-card-title {
+  font-family: var(--font-headings);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-preview-container {
+  position: relative;
+  height: 180px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* Solid light background for color logos */
+.logo-preview-container.bg-light-solid {
+  background-color: var(--color-neutro-50);
+}
+
+/* Azul 500 background for white logos */
+.logo-preview-container.bg-azul-500 {
+  background-color: var(--color-azul-500);
+}
+
+.logo-preview-img {
+  max-width: 80%;
+  max-height: 70%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-preview-img:hover {
+  transform: scale(1.05);
+}
+
+.bg-toggle-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.logo-preview-container.bg-azul-500 .bg-toggle-btn {
+  background: rgba(31, 38, 50, 0.85);
+  border-color: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.bg-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.logo-downloads-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logo-download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease;
+}
+
+.logo-download-row:hover {
+  border-color: var(--color-violeta-300);
+}
+
+.logo-size-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-size-badge {
+  background: var(--color-neutro-100);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  min-width: 32px;
+  text-align: center;
+}
+
+.logo-dimensions {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.logo-filesize {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.logo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+a.btn-secondary.btn-sm, a.btn-outline.btn-sm, a.btn-ghost.btn-sm {
+  text-decoration: none !important;
+}
+
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
   .sidebar {

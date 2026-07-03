@@ -44,8 +44,8 @@ document.addEventListener('click', e => {
 });
 
 // ── Page routing ─────────────────────────────────────────────
-const pages = { tokens: 'page-tokens', colors: 'page-colors', typography: 'page-typography', components: 'page-components', icons: 'page-icons', grid: 'page-grid' };
-const nav_labels = { tokens: 'Tokens de Diseño', colors: 'Colores', typography: 'Tipografía', components: 'Componentes', icons: 'Iconos', grid: 'Sistema Grid' };
+const pages = { tokens: 'page-tokens', colors: 'page-colors', typography: 'page-typography', components: 'page-components', icons: 'page-icons', grid: 'page-grid', logos: 'page-logos' };
+const nav_labels = { tokens: 'Tokens de Diseño', colors: 'Colores', typography: 'Tipografía', components: 'Componentes', icons: 'Iconos', grid: 'Sistema Grid', logos: 'Logotipos' };
 
 let currentPage = 'tokens';
 
@@ -858,17 +858,262 @@ function activateTab(btn, group) {
   btn.classList.add('active');
 }
 
+// ── LOGOS DATA & RENDER ──────────────────────────────────────
+const LOGO_METADATA = [
+  {
+    id: 'esc-gestion',
+    title: 'Escudo + Gestión',
+    description: 'Versión corporativa principal que une el escudo histórico de la comuna con la marca de la administración vigente.',
+    usage: 'Recomendado para papelería institucional oficial, encabezados de sitios web principales y firmas de correo.',
+    variants: [
+      {
+        colorId: 'color',
+        title: 'Versión Color (Principal)',
+        description: 'Usar sobre fondos claros, neutros o transparentes.',
+        previewPath: 'img/logos-sistema-diseño/esc-gestion-color-L-muniquilicura.png',
+        bgDefault: 'bg-light-solid',
+        sizes: [
+          { name: 'S', file: 'esc-gestion-color-S-muniquilicura.png', res: '488x76 px', size: '8.7 KB' },
+          { name: 'L', file: 'esc-gestion-color-L-muniquilicura.png', res: '637x99 px', size: '11.7 KB' },
+          { name: 'XL', file: 'esc-gestion-color-XL-muniquilicura.png', res: '910x141 px', size: '17.4 KB' }
+        ]
+      },
+      {
+        colorId: 'bco',
+        title: 'Versión Blanco (Negativo)',
+        description: 'Usar únicamente sobre fondos oscuros, fotografías contrastadas o colores institucionales sólidos.',
+        previewPath: 'img/logos-sistema-diseño/esc-gestion-bco-L-muniquilicura.png',
+        bgDefault: 'bg-azul-500',
+        sizes: [
+          { name: 'S', file: 'esc-gestion-bco-S-muniquilicura.png', res: '488x76 px', size: '7.4 KB' },
+          { name: 'L', file: 'esc-gestion-bco-L-muniquilicura.png', res: '637x99 px', size: '9.9 KB' },
+          { name: 'XL', file: 'esc-gestion-bco-XL-muniquilicura.png', res: '910x141 px', size: '14.9 KB' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'escudo',
+    title: 'Escudo Solo',
+    description: 'El emblema heráldico tradicional e histórico de la municipalidad, sin texto secundario.',
+    usage: 'Reservado exclusivamente para actos solemnes, documentos oficiales del Alcalde/Concejo, decretos y sellos de cera/agua.',
+    variants: [
+      {
+        colorId: 'color',
+        title: 'Versión Color',
+        description: 'Usar sobre fondos claros o neutros para mantener la heráldica original.',
+        previewPath: 'img/logos-sistema-diseño/escudo-color-L-muniquilicura.png',
+        bgDefault: 'bg-light-solid',
+        sizes: [
+          { name: 'S', file: 'escudo-color-S-muniquilicura.png', res: '194x76 px', size: '3.5 KB' },
+          { name: 'L', file: 'escudo-color-L-muniquilicura.png', res: '252x99 px', size: '4.8 KB' },
+          { name: 'XL', file: 'escudo-color-XL-muniquilicura.png', res: '359x141 px', size: '7.1 KB' }
+        ]
+      },
+      {
+        colorId: 'bco',
+        title: 'Versión Blanco',
+        description: 'Versión en negativo del escudo heráldico para fondos oscuros.',
+        previewPath: 'img/logos-sistema-diseño/escudo-bco-L-muniquilicura.png',
+        bgDefault: 'bg-azul-500',
+        sizes: [
+          { name: 'S', file: 'escudo-bco-S-muniquilicura.png', res: '194x76 px', size: '3.1 KB' },
+          { name: 'L', file: 'escudo-bco-L-muniquilicura.png', res: '252x99 px', size: '4.2 KB' },
+          { name: 'XL', file: 'escudo-bco-XL-muniquilicura.png', res: '359x141 px', size: '6.4 KB' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'gestion',
+    title: 'Marca de Gestión',
+    description: 'El logotipo tipográfico simplificado que representa la administración municipal actual.',
+    usage: 'Ideal para afiches de eventos vecinales, redes sociales, banners web informativos y campañas municipales dinámicas.',
+    variants: [
+      {
+        colorId: 'color',
+        title: 'Versión Color',
+        description: 'Logotipo con los colores oficiales de la administración.',
+        previewPath: 'img/logos-sistema-diseño/gestion-color-L-muniquilicura.png',
+        bgDefault: 'bg-light-solid',
+        sizes: [
+          { name: 'S', file: 'gestion-color-S-muniquilicura.png', res: '253x76 px', size: '5.0 KB' },
+          { name: 'L', file: 'gestion-color-L-muniquilicura.png', res: '330x99 px', size: '6.7 KB' },
+          { name: 'XL', file: 'gestion-color-XL-muniquilicura.png', res: '471x141 px', size: '10.0 KB' }
+        ]
+      },
+      {
+        colorId: 'bco',
+        title: 'Versión Blanco',
+        description: 'Logotipo en negativo para aplicaciones en fondos con color corporativo.',
+        previewPath: 'img/logos-sistema-diseño/gestion-bco-L-muniquilicura.png',
+        bgDefault: 'bg-azul-500',
+        sizes: [
+          { name: 'S', file: 'gestion-bco-S-muniquilicura.png', res: '253x76 px', size: '4.0 KB' },
+          { name: 'L', file: 'gestion-bco-L-muniquilicura.png', res: '330x99 px', size: '5.5 KB' },
+          { name: 'XL', file: 'gestion-bco-XL-muniquilicura.png', res: '471x141 px', size: '8.4 KB' }
+        ]
+      }
+    ]
+  }
+];
+
+function renderLogos() {
+  const el = document.getElementById('logos-content');
+  if (!el) return;
+
+  let html = `<div class="logo-section-container">`;
+
+  LOGO_METADATA.forEach(section => {
+    html += `
+      <div class="logo-section" id="section-${section.id}">
+        <div class="logo-section-header">
+          <h2 class="section-title logo-section-title">${section.title}</h2>
+          <p class="logo-section-desc">${section.description}</p>
+          <div style="font-size:12.5px; margin-top:8px; color:var(--text-secondary); line-height: 1.5;">
+            <strong style="color:var(--text-primary)">Uso correcto:</strong> ${section.usage}
+          </div>
+        </div>
+        
+        <div class="logo-grid">
+    `;
+
+    section.variants.forEach(variant => {
+      const containerId = `preview-${section.id}-${variant.colorId}`;
+      const defaultBgClass = variant.bgDefault;
+      const isBco = variant.colorId === 'bco';
+      const toggleIcon = isBco ? 'ph-sun-dim' : 'ph-moon';
+      
+      html += `
+        <div class="logo-card">
+          <div class="logo-card-title">
+            <span>${variant.title}</span>
+            <span class="text-muted" style="font-weight:normal; font-size:11px; color: var(--text-muted)">PNG Transparente</span>
+          </div>
+          
+          <div class="logo-preview-container ${defaultBgClass}" id="${containerId}">
+            <button class="bg-toggle-btn" onclick="toggleLogoBg('${containerId}')" title="Alternar fondo claro/oscuro">
+              <i class="ph-bold ${toggleIcon}"></i>
+            </button>
+            <img src="${variant.previewPath}" alt="${variant.title}" class="logo-preview-img">
+          </div>
+          
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.5; margin: 0;">${variant.description}</p>
+          
+          <div class="logo-downloads-list">
+      `;
+
+      variant.sizes.forEach(size => {
+        const fullPath = `./img/logos-sistema-diseño/${size.file}`;
+        html += `
+          <div class="logo-download-row">
+            <div class="logo-size-info">
+              <span class="logo-size-badge">${size.name}</span>
+              <div>
+                <div class="logo-dimensions">${size.res}</div>
+                <div class="logo-filesize">${size.size}</div>
+              </div>
+            </div>
+            <div class="logo-actions">
+              <button class="btn-secondary btn-sm btn-icon" onclick="copyToClipboard('${fullPath}', 'Ruta copiada al portapapeles')" title="Copiar ruta de archivo para código">
+                <i class="ph ph-copy-simple"></i>
+              </button>
+              <button class="btn-primary btn-sm btn-icon" onclick="downloadLogo('${fullPath}', '${size.file}')" title="Descargar PNG">
+                <i class="ph ph-download-simple"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+window.toggleLogoBg = function(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const isAzul = container.classList.contains('bg-azul-500');
+  const btn = container.querySelector('.bg-toggle-btn i');
+  
+  if (isAzul) {
+    container.classList.remove('bg-azul-500');
+    container.classList.add('bg-light-solid');
+    if (btn) {
+      btn.className = 'ph-bold ph-moon';
+    }
+  } else {
+    container.classList.remove('bg-light-solid');
+    container.classList.add('bg-azul-500');
+    if (btn) {
+      btn.className = 'ph-bold ph-sun-dim';
+    }
+  }
+};
+
+window.downloadLogo = async function(url, filename) {
+  if (window.showSaveFilePicker) {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{
+          description: 'Imagen PNG',
+          accept: {
+            'image/png': ['.png'],
+          },
+        }],
+      });
+      
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      showToast('Archivo guardado exitosamente');
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        return;
+      }
+      console.warn('showSaveFilePicker falló o fue cancelado. Usando descarga clásica:', err);
+    }
+  }
+  
+  // Fallback to classic link click
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 // ── Init ─────────────────────────────────────────────────────
 renderTokens();
 renderColors();
 renderTypography();
 renderIcons();
 renderGridDocs();
+renderLogos();
 renderComponents();
 
 // ── Submenu builder ──────────────────────────────────────────
 window.buildSubmenus = function() {
-  const pagesList = ['tokens', 'colors', 'typography', 'icons', 'grid', 'components'];
+  const pagesList = ['tokens', 'colors', 'typography', 'icons', 'grid', 'logos', 'components'];
   pagesList.forEach(pageId => {
     const pageEl = document.getElementById('page-' + pageId);
     if (!pageEl) return;
